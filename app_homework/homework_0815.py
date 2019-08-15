@@ -3,7 +3,6 @@ from appium import webdriver
 import time
 import unittest
 
-
 class MyTestCase(unittest.TestCase):
     @classmethod
     def setUpClass(cls):

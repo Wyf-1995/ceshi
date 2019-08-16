@@ -2,6 +2,7 @@
 from appium import webdriver
 import time
 import unittest
+from app_homework.config import Conculater_Test
 
 class MyTestCase(unittest.TestCase):
     @classmethod
@@ -17,215 +18,91 @@ class MyTestCase(unittest.TestCase):
         desired_caps['resetKeyboard'] = True
 
         cls.driver = webdriver.Remote('http://localhost:4723/wd/hub', desired_caps)
+        cls.way = Conculater_Test(cls.driver)
         time.sleep(2)
 
-    def test_01_something(self):
-        add_2=self.driver.find_element_by_id("com.miui.calculator:id/btn_2_s")
-        add_2.click()
+    def test_01_add_1345_3456(self):
+        self.way.input_1.click()
+        self.way.input_3.click()
+        self.way.input_4.click()
+        self.way.input_5.click()
+        self.way.plus.click()
+        self.way.input_3.click()
+        self.way.input_4.click()
+        self.way.input_5.click()
+        self.way.input_6.click()
+        self.way.equal.click()
+
+        time.sleep(1)
+        act=self.way.result.text
+        exp="4,801"
+        self.assertEqual(act,exp)
+
+        self.way.btn_c.click()
         time.sleep(1)
 
-        add_2 = self.driver.find_element_by_id("com.miui.calculator:id/btn_2_s")
-        add_2.click()
-        time.sleep(1)
+    def test_02_minus_1345_3456(self):
+        self.way.input_1.click()
+        self.way.input_3.click()
+        self.way.input_4.click()
+        self.way.input_5.click()
+        self.way.minus.click()
+        self.way.input_3.click()
+        self.way.input_4.click()
+        self.way.input_5.click()
+        self.way.input_6.click()
+        self.way.equal.click()
 
-        add_3 = self.driver.find_element_by_id("com.miui.calculator:id/btn_3_s")
-        add_3.click()
         time.sleep(1)
-
-        add_2 = self.driver.find_element_by_id("com.miui.calculator:id/btn_2_s")
-        add_2.click()
-        time.sleep(1)
-
-        add_2 = self.driver.find_element_by_id("com.miui.calculator:id/btn_2_s")
-        add_2.click()
-        time.sleep(1)
-
-        add=self.driver.find_element_by_id("com.miui.calculator:id/btn_plus_s")
-        add.click()
-        time.sleep(1)
-
-        add_2 = self.driver.find_element_by_id("com.miui.calculator:id/btn_2_s")
-        add_2.click()
-        time.sleep(1)
-
-        add_3 = self.driver.find_element_by_id("com.miui.calculator:id/btn_3_s")
-        add_3.click()
-        time.sleep(1)
-
-        add_2 = self.driver.find_element_by_id("com.miui.calculator:id/btn_2_s")
-        add_2.click()
-        time.sleep(1)
-
-        add_2 = self.driver.find_element_by_id("com.miui.calculator:id/btn_2_s")
-        add_2.click()
-        time.sleep(1)
-
-        sum=self.driver.find_element_by_id("com.miui.calculator:id/btn_equal_s")
-        sum.click()
-        time.sleep(1)
-
-        result=self.driver.find_element_by_xpath("/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout[2]/com.miui.support.view.ViewPager/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout[2]/android.widget.LinearLayout/android.widget.HorizontalScrollView[3]/android.widget.LinearLayout/android.widget.TextView[2]")
-        act=result.get_attribute("text")
-        exp="24,644"
+        act = self.way.result.text
+        exp = "-2,111"
         self.assertEqual(act, exp)
+
+        self.way.btn_c.click()
         time.sleep(1)
 
-        clear=self.driver.find_element_by_accessibility_id(u"清除")
-        clear.click()
-        time.sleep(1)
+    def test_03_mul_1345_3456(self):
+        self.way.input_1.click()
+        self.way.input_3.click()
+        self.way.input_4.click()
+        self.way.input_5.click()
+        self.way.mul.click()
+        self.way.input_3.click()
+        self.way.input_4.click()
+        self.way.input_5.click()
+        self.way.input_6.click()
+        self.way.equal.click()
 
-    def test_02_something(self):
-        add_2=self.driver.find_element_by_id("com.miui.calculator:id/btn_2_s")
-        add_2.click()
         time.sleep(1)
-
-        add_5 = self.driver.find_element_by_id("com.miui.calculator:id/btn_5_s")
-        add_5.click()
-        time.sleep(1)
-
-        add_3 = self.driver.find_element_by_id("com.miui.calculator:id/btn_3_s")
-        add_3.click()
-        time.sleep(1)
-
-        add_2 = self.driver.find_element_by_id("com.miui.calculator:id/btn_2_s")
-        add_2.click()
-        time.sleep(1)
-
-        chengfa=self.driver.find_element_by_accessibility_id(u"乘")
-        chengfa.click()
-        time.sleep(1)
-
-        add_1 = self.driver.find_element_by_id("com.miui.calculator:id/btn_1_s")
-        add_1.click()
-        time.sleep(1)
-
-        add_3 = self.driver.find_element_by_id("com.miui.calculator:id/btn_3_s")
-        add_3.click()
-        time.sleep(1)
-
-        add_6 = self.driver.find_element_by_id("com.miui.calculator:id/btn_6_s")
-        add_6.click()
-        time.sleep(1)
-
-        add_6 = self.driver.find_element_by_id("com.miui.calculator:id/btn_6_s")
-        add_6.click()
-        time.sleep(1)
-
-        sum=self.driver.find_element_by_id("com.miui.calculator:id/btn_equal_s")
-        sum.click()
-        time.sleep(1)
-
-        result=self.driver.find_element_by_xpath("/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout[2]/com.miui.support.view.ViewPager/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout[2]/android.widget.LinearLayout/android.widget.HorizontalScrollView[3]/android.widget.LinearLayout/android.widget.TextView[2]")
-        act=result.get_attribute("text")
-        exp="3,458,712"
+        act = self.way.result.text
+        exp = "4,648,320"
         self.assertEqual(act, exp)
+
+        self.way.btn_c.click()
         time.sleep(1)
 
-        clear = self.driver.find_element_by_accessibility_id(u"清除")
-        clear.click()
+
+    def test_04_div_1345_3456(self):
+        self.way.input_1.click()
+        self.way.input_3.click()
+        self.way.input_4.click()
+        self.way.input_5.click()
+        self.way.div.click()
+        self.way.input_3.click()
+        self.way.input_4.click()
+        self.way.input_5.click()
+        self.way.input_6.click()
+        self.way.equal.click()
+
+        time.sleep(1)
+        act = self.way.result.text
+        exp = "0.389178241"
+        self.assertIn(exp, act)
+
+        self.way.btn_c.click()
         time.sleep(1)
 
-    def test_03_something(self):
-        add_2=self.driver.find_element_by_id("com.miui.calculator:id/btn_2_s")
-        add_2.click()
-        time.sleep(1)
 
-        add_5 = self.driver.find_element_by_id("com.miui.calculator:id/btn_5_s")
-        add_5.click()
-        time.sleep(1)
-
-        add_3 = self.driver.find_element_by_id("com.miui.calculator:id/btn_3_s")
-        add_3.click()
-        time.sleep(1)
-
-        add_2 = self.driver.find_element_by_id("com.miui.calculator:id/btn_2_s")
-        add_2.click()
-        time.sleep(1)
-
-        chu=self.driver.find_element_by_accessibility_id(u"除")
-        chu.click()
-        time.sleep(1)
-
-        add_2 = self.driver.find_element_by_id("com.miui.calculator:id/btn_2_s")
-        add_2.click()
-        time.sleep(1)
-
-        add_3 = self.driver.find_element_by_id("com.miui.calculator:id/btn_3_s")
-        add_3.click()
-        time.sleep(1)
-
-        add_5 = self.driver.find_element_by_id("com.miui.calculator:id/btn_5_s")
-        add_5.click()
-        time.sleep(1)
-
-        add_6 = self.driver.find_element_by_id("com.miui.calculator:id/btn_6_s")
-        add_6.click()
-        time.sleep(1)
-
-        sum=self.driver.find_element_by_id("com.miui.calculator:id/btn_equal_s")
-        sum.click()
-        time.sleep(1)
-
-        result=self.driver.find_element_by_xpath("/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout[2]/com.miui.support.view.ViewPager/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout[2]/android.widget.LinearLayout/android.widget.HorizontalScrollView[3]/android.widget.LinearLayout/android.widget.TextView[2]")
-        act=result.get_attribute("text")
-        exp="1.07470289"
-        self.assertEqual(act, exp)
-        time.sleep(1)
-
-        clear = self.driver.find_element_by_accessibility_id(u"清除")
-        clear.click()
-        time.sleep(1)
-
-    def test_04_something(self):
-        add_9=self.driver.find_element_by_id("com.miui.calculator:id/btn_9_s")
-        add_9.click()
-        time.sleep(1)
-
-        add_5 = self.driver.find_element_by_id("com.miui.calculator:id/btn_5_s")
-        add_5.click()
-        time.sleep(1)
-
-        add_2 = self.driver.find_element_by_id("com.miui.calculator:id/btn_2_s")
-        add_2.click()
-        time.sleep(1)
-
-        add_7 = self.driver.find_element_by_id("com.miui.calculator:id/btn_7_s")
-        add_7.click()
-        time.sleep(1)
-
-        jian=self.driver.find_element_by_accessibility_id(u"减")
-        jian.click()
-        time.sleep(1)
-
-        add_2 = self.driver.find_element_by_id("com.miui.calculator:id/btn_2_s")
-        add_2.click()
-        time.sleep(1)
-
-        add_3 = self.driver.find_element_by_id("com.miui.calculator:id/btn_3_s")
-        add_3.click()
-        time.sleep(1)
-
-        add_5 = self.driver.find_element_by_id("com.miui.calculator:id/btn_5_s")
-        add_5.click()
-        time.sleep(1)
-
-        add_6 = self.driver.find_element_by_id("com.miui.calculator:id/btn_6_s")
-        add_6.click()
-        time.sleep(1)
-
-        sum=self.driver.find_element_by_id("com.miui.calculator:id/btn_equal_s")
-        sum.click()
-        time.sleep(1)
-
-        result=self.driver.find_element_by_xpath("/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout[2]/com.miui.support.view.ViewPager/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout[2]/android.widget.LinearLayout/android.widget.HorizontalScrollView[3]/android.widget.LinearLayout/android.widget.TextView[2]")
-        act=result.get_attribute("text")
-        exp="7,171"
-        self.assertEqual(act, exp)
-        time.sleep(1)
-
-        clear = self.driver.find_element_by_accessibility_id(u"清除")
-        clear.click()
-        time.sleep(1)
 
 if __name__ == '__main__':
     unittest.main()

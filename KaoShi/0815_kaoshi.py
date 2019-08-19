@@ -31,12 +31,13 @@
 # print ('it is the %dth day.' % sum)
 
 
-fz = 2
-fm = 1
-sum_1 = 0
-for i in range(20):
-    sum_1 += fz / fm
-    t = fz
-    fz = fz + fm
-    fm = t
-print(sum_1)
+# fz = 2
+# fm = 1
+# sum_1 = 0
+# for i in range(20):
+#     sum_1 += fz / fm
+#     t = fz
+#     fz = fz + fm
+#     fm = t
+# print(sum_1)
+

@@ -2,27 +2,30 @@
 import unittest
 from appium import webdriver
 import time
-from APP_test.wukong_config import Wukong_Test
+from App_scrip.wukong import Wukong_Test
+from App_scrip import config
 
 
 class MyTestCase(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         desired_caps = {}
-        desired_caps['platformName'] = 'Android'
-        desired_caps['platformVersion'] = '8.1'
-        desired_caps['automationName'] = 'uiautomator2'
-        desired_caps['deviceName'] = '112980c47d33'
-        desired_caps['appPackage'] = 'com.kakarote.crm9'
-        desired_caps['appActivity'] = '.MainActivity'
-        desired_caps['unicodeKeyboard'] = True
-        desired_caps['resetKeyboard'] = True
-        desired_caps['noReset'] = True
+        desired_caps['platformName'] = config.platformName
+        desired_caps['platformVersion'] = config.platformVersion
+        desired_caps['automationName'] = config.automationName
+        desired_caps['deviceName'] = config.deviceName
+        desired_caps['appPackage'] = config.appPackage
+        desired_caps['appActivity'] = config.appActivity
+        desired_caps['unicodeKeyboard'] = config.unicodeKeyboard
+        desired_caps['resetKeyboard'] = config.resetKeyboard
+        desired_caps['noReset'] = config.noReset
 
-        cls.driver = webdriver.Remote('http://localhost:4723/wd/hub', desired_caps)
+        url="http://%s:%s/wd/hub"%(config.Remote_ip,config.Remote_post)
+        cls.driver = webdriver.Remote(url, desired_caps)
         cls.way = Wukong_Test(cls.driver)
         time.sleep(5)
 
+    # 登录
     # def test_01_login(self):
     #     self.way.user_name.click()
     #     self.way.user_name.send_keys(u'18062502916')
@@ -39,6 +42,7 @@ class MyTestCase(unittest.TestCase):
     #     exp = "悟空CRM"
     #     self.assertEqual(act, exp)
 
+    # 跳转我的页面
     def test_02_Jump_My(self):
         self.way.My_button.click()
         time.sleep(1)
@@ -47,6 +51,7 @@ class MyTestCase(unittest.TestCase):
         exp="我的"
         self.assertEqual(act, exp)
 
+    # 跳转我的个人信息
     # def test_03_Jump_My_information(self):
     #     self.way.My_photo.click()
     #     time.sleep(1)
@@ -58,6 +63,7 @@ class MyTestCase(unittest.TestCase):
     #     self.way.return_My.click()
     #     time.sleep(1)
     #
+    # # 跳转企业通讯录
     # def test_04_Jump_phone_list(self):
     #     self.way.phone_list.click()
     #     time.sleep(1)
@@ -74,6 +80,7 @@ class MyTestCase(unittest.TestCase):
     #
     #     self.driver.back()
     #
+    # # 拨打企业通讯录中的电话
     # def test_05_service_phone(self):
     #     self.way.only_service.click()
     #     time.sleep(1)
@@ -91,6 +98,7 @@ class MyTestCase(unittest.TestCase):
     #     self.driver.back()
     #     time.sleep(1)
     #
+    # # 我的待办
     # def test_06_wait_solve(self):
     #     self.way.wait_my_solve.click()
     #     time.sleep(1)
@@ -102,6 +110,7 @@ class MyTestCase(unittest.TestCase):
     #     self.way.My_button.click()
     #     time.sleep(1)
     #
+    # # 我的待办（拒绝）
     # def test_07_My_wait_solve_refuse(self):
     #     self.way.My_wait_solve.click()
     #     time.sleep(1)
@@ -134,6 +143,7 @@ class MyTestCase(unittest.TestCase):
     #
     #     self.driver.back()
     #
+    # # 我的待办（同意）
     # def test_08_My_wait_solve_agree(self):
     #     self.way.My_wait_solve.click()
     #     time.sleep(1)
@@ -160,6 +170,7 @@ class MyTestCase(unittest.TestCase):
     #     self.driver.back()
     #     time.sleep(1)
     #
+    # # 我的待办（撤回）
     # def test_09_My_wait_solve_return(self):
     #     self.way.My_wait_solve.click()
     #     time.sleep(1)
@@ -190,6 +201,7 @@ class MyTestCase(unittest.TestCase):
     #     self.driver.back()
     #     time.sleep(1)
     #
+    # # 跳转系统设置
     # def test_10_sys_setting(self):
     #     self.way.sys_setting.click()
     #     time.sleep(1)
@@ -207,6 +219,7 @@ class MyTestCase(unittest.TestCase):
     #     self.driver.back()
     #     time.sleep(1)
     #
+    # # 系统设置打电话
     # def test_11_sys_setting(self):
     #     self.way.sys_setting.click()
     #     time.sleep(1)
@@ -233,6 +246,7 @@ class MyTestCase(unittest.TestCase):
     #     self.driver.back()
     #     time.sleep(1)
     #
+    # # 跳我的日志
     # def test_12_My_Journal(self):
     #     self.way.My_Journal.click()
     #     time.sleep(1)
@@ -244,30 +258,32 @@ class MyTestCase(unittest.TestCase):
     #     self.driver.back()
     #     time.sleep(1)
     #
+    # # 我的日志——评论
     # def test_13_My_Journal_comment(self):
     #     self.way.My_Journal.click()
-    #     time.sleep(1)
+    #     time.sleep(2)
     #
     #     self.way.choice_Journal.click()
-    #     time.sleep(1)
+    #     time.sleep(2)
     #
     #     self.way.choice_input.click()
     #     self.way.choice_input.send_keys(u"吴彦祖")
-    #     time.sleep(1)
+    #     time.sleep(2)
     #
     #     self.way.send_input.click()
-    #     time.sleep(1)
+    #     time.sleep(2)
     #
     #     act=self.way.result_input.text
     #     exp="吴彦祖"
-    #     self.assertEqual(act, exp)
+    #     self.assertIn(exp,act)
     #
     #     self.driver.back()
     #     time.sleep(1)
     #
     #     self.driver.back()
-    #     time.sleep(1)
+    #     time.sleep(2)
 
+    # 我的日志——删除
     def test_14_My_Journal_delete(self):
         self.way.My_Journal.click()
         time.sleep(1)
@@ -281,17 +297,18 @@ class MyTestCase(unittest.TestCase):
         self.way.choice_delete.click()
         time.sleep(1)
 
+        self.way.sure_delete.click()
+        time.sleep(1)
+
         act=self.way.result_delete.text
-        exp="日志详情"
+        exp="日志"
         self.assertEqual(act,exp)
 
         self.driver.back()
         time.sleep(1)
 
-        self.driver.back()
-        time.sleep(1)
-
-    def test_15_My_Journal_delete(self):
+    # 收到的日志
+    def test_15_My_Journal_recevied(self):
         self.way.recevied_Journal.click()
         time.sleep(3)
 
@@ -302,6 +319,7 @@ class MyTestCase(unittest.TestCase):
         self.driver.back()
         time.sleep(1)
 
+    # 我发起的审批
     def test_16_My_launch(self):
         self.way.My_launch.click()
         time.sleep(1)

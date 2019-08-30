@@ -5,7 +5,6 @@ import time
 from App_scrip.wukong import Wukong_Test
 from App_scrip import config
 
-
 class MyTestCase(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
